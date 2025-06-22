@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dxnt4m1x7ocog"]
+
+[node name="DefaultMenu" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchor_right = 0.582
+anchor_bottom = 0.389
+offset_right = -9.36401
+offset_bottom = -0.0720215
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 404.0
+offset_bottom = 229.96
+columns = 8
+
+[node name="Button" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button2" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button3" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button4" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button5" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button6" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button7" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button8" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Test Button"

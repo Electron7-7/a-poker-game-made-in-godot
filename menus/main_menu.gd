@@ -15,6 +15,6 @@ func try_exit() -> void:
 
 func toggle_settings(toggle_on : bool) -> void:
     if(toggle_on):
-        global_MenuManager.SwitchMenus(self, global_MenuManager.settings_menu)
+        global_MenuManager.SwitchMenus(global_MenuManager.settings_menu, self)
         return
-    global_MenuManager.SwitchMenus(global_MenuManager.settings_menu, self)
+    global_MenuManager.SwitchMenus(self, global_MenuManager.settings_menu)

@@ -22,7 +22,7 @@ offset_top = 20.0
 offset_right = 1129.0
 offset_bottom = 630.0
 
-[node name="VSplitContainer" type="VSplitContainer" parent="Panel"]
+[node name="FooterSeparator" type="VSplitContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
@@ -35,50 +35,54 @@ split_offset = 480
 dragging_enabled = false
 dragger_visibility = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VSplitContainer"]
+[node name="Settings" type="ScrollContainer" parent="Panel/FooterSeparator"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VSplitContainer/VBoxContainer"]
+[node name="SettingsList" type="VBoxContainer" parent="Panel/FooterSeparator/Settings"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/VSplitContainer/VBoxContainer/HBoxContainer"]
+[node name="Setting" type="HBoxContainer" parent="Panel/FooterSeparator/Settings/SettingsList"]
 layout_mode = 2
-text = "Player Name:"
+metadata/_edit_group_ = true
 
-[node name="PlayerName" type="LineEdit" parent="Panel/VSplitContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Panel/FooterSeparator/Settings/SettingsList/Setting"]
+layout_mode = 2
+text = "Player Name"
+
+[node name="PlayerName" type="LineEdit" parent="Panel/FooterSeparator/Settings/SettingsList/Setting"]
 unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "thelegend27"
 expand_to_text_length = true
 select_all_on_focus = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VSplitContainer"]
+[node name="Footer" type="HBoxContainer" parent="Panel/FooterSeparator"]
 layout_mode = 2
 
-[node name="Save" type="Button" parent="Panel/VSplitContainer/HBoxContainer"]
+[node name="Save" type="Button" parent="Panel/FooterSeparator/Footer"]
 unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "Save Settings"
 
-[node name="Back" type="Button" parent="Panel/VSplitContainer/HBoxContainer"]
+[node name="Back" type="Button" parent="Panel/FooterSeparator/Footer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Back"
 
-[node name="VSeparator" type="VSeparator" parent="Panel/VSplitContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="Panel/FooterSeparator/Footer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("StyleBoxEmpty_v0bl3")
 
-[node name="ClearBackups" type="Button" parent="Panel/VSplitContainer/HBoxContainer"]
+[node name="ClearBackups" type="Button" parent="Panel/FooterSeparator/Footer"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(0.93, 0.3534, 0.3534, 1)
 text = "Clear Backups"
 
-[node name="ClearSettings" type="Button" parent="Panel/VSplitContainer/HBoxContainer"]
+[node name="ClearSettings" type="Button" parent="Panel/FooterSeparator/Footer"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0

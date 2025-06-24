@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4kccfefvltc"]
+
+[ext_resource type="Script" uid="uid://bki0uyd6jfn5t" path="res://menus/_menu.gd" id="1_v1dxd"]
+[ext_resource type="Script" uid="uid://dqc1ofe0x7ufp" path="res://menus/_loader.gd" id="2_n4a8d"]
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_v1dxd")
+metadata/_custom_type_script = ExtResource("1_v1dxd")
+
+[node name="Loader" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Back"
+script = ExtResource("2_n4a8d")
+metadata/_custom_type_script = ExtResource("2_n4a8d")

@@ -1,4 +1,6 @@
-class_name WorldManager extends Node3D
+class_name DedicatedMain extends Node
+
+var MainMenu : PackedScene = preload("res://menus/main_menu.tscn")
 
 static var _current_scene : PackedScene
 
@@ -16,3 +18,9 @@ static func LoadScene(new_scene : PackedScene) -> LoadStatus:
 
     _current_scene = new_scene
     return LoadStatus.FINISHED
+
+func _init() -> void:
+    Engine.physics_ticks_per_second = Common._TICK_RATE
+
+func _ready() -> void:
+    global_MenuManager.LoadRootMenu(MainMenu)

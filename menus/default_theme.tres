@@ -1,12 +1,44 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://blvtl6fyy5r6g"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://blvtl6fyy5r6g"]
 
 [ext_resource type="FontFile" uid="uid://dtsickda5aw1n" path="res://fonts/Audiowide-Regular.ttf" id="1_7454o"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3w4u"]
+bg_color = Color(0.5796, 0.58512, 0.69, 0.196078)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.4704, 0.473387, 0.56, 0.509804)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7454o"]
+bg_color = Color(0, 0.77, 0.385, 0.172549)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6od3n"]
+bg_color = Color(0.0224, 0.14, 0.06944, 0.94902)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [resource]
-Button/font_sizes/font_size = 32
+Button/font_sizes/font_size = 24
 Button/fonts/font = ExtResource("1_7454o")
 HBoxContainer/constants/separation = 8
-Label/font_sizes/font_size = 32
+Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_7454o")
-LineEdit/font_sizes/font_size = 32
+LineEdit/font_sizes/font_size = 24
 LineEdit/fonts/font = ExtResource("1_7454o")
+SavesScroll/base_type = &"ScrollContainer"
+SavesScroll/styles/panel = SubResource("StyleBoxFlat_e3w4u")
+WorldSelectButton/base_type = &"Button"
+WorldSelectButton/styles/hover = SubResource("StyleBoxFlat_7454o")
+WorldSelectButton/styles/pressed = SubResource("StyleBoxFlat_6od3n")

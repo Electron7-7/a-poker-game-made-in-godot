@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxnt4m1x7ocog"]
+[gd_scene load_steps=3 format=3 uid="uid://dxnt4m1x7ocog"]
 
 [ext_resource type="Script" uid="uid://d0c7n1bwxv5sn" path="res://menus/main_menu.gd" id="1_ij7vn"]
+[ext_resource type="Theme" uid="uid://blvtl6fyy5r6g" path="res://menus/default_theme.tres" id="2_ij7vn"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -9,65 +10,99 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_ij7vn")
 script = ExtResource("1_ij7vn")
 
-[node name="MainMenu" type="VBoxContainer" parent="."]
-unique_name_in_owner = true
+[node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
-offset_left = 368.0
-offset_top = 272.0
-offset_right = 800.0
-offset_bottom = 373.0
+offset_right = 1152.0
+offset_bottom = 648.0
 
-[node name="GameButtons" type="HBoxContainer" parent="MainMenu"]
+[node name="MainMenu" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="GameButtons" type="HBoxContainer" parent="CenterContainer/MainMenu"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="New" type="Button" parent="MainMenu/GameButtons"]
+[node name="New" type="Button" parent="CenterContainer/MainMenu/GameButtons"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Start New"
+text = "New Game"
 
-[node name="Continue" type="Button" parent="MainMenu/GameButtons"]
+[node name="Continue" type="Button" parent="CenterContainer/MainMenu/GameButtons"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 disabled = true
-text = "Continue Game"
+text = "Continue"
 
-[node name="Settings" type="Button" parent="MainMenu"]
+[node name="Settings" type="Button" parent="CenterContainer/MainMenu"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Settings"
 
-[node name="HostingButtons" type="HBoxContainer" parent="MainMenu"]
+[node name="HostingButtons" type="HBoxContainer" parent="CenterContainer/MainMenu"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+size_flags_horizontal = 0
+alignment = 2
 
-[node name="Button" type="Button" parent="MainMenu/HostingButtons"]
+[node name="Button" type="Button" parent="CenterContainer/MainMenu/HostingButtons"]
 layout_mode = 2
-size_flags_horizontal = 3
 text = "Open to LAN"
 
-[node name="Button2" type="Button" parent="MainMenu/HostingButtons"]
+[node name="Button2" type="Button" parent="CenterContainer/MainMenu/HostingButtons"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
 text = "Host P2P"
 
-[node name="Button3" type="Button" parent="MainMenu/HostingButtons"]
+[node name="Button3" type="Button" parent="CenterContainer/MainMenu/HostingButtons"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
 text = "Host via Steam"
 
-[node name="Exit" type="Button" parent="MainMenu"]
+[node name="Exit" type="Button" parent="CenterContainer/MainMenu"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Exit"
 
-[node name="Quit" type="Button" parent="MainMenu"]
+[node name="Quit" type="Button" parent="CenterContainer/MainMenu"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Quit to Menu"
+
+[node name="Saves" type="ScrollContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 784.0
+offset_top = 256.0
+offset_right = 1120.0
+offset_bottom = 624.0
+theme_type_variation = &"SavesScroll"
+metadata/_edit_group_ = true
+
+[node name="SaveGames" type="VBoxContainer" parent="Saves"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="_WorldTemplate" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+offset_left = 814.0
+offset_top = 272.0
+offset_right = 1137.0
+offset_bottom = 280.0
+size_flags_horizontal = 3
+theme = ExtResource("2_ij7vn")
+theme_type_variation = &"WorldSelectButton"
+text = "test"

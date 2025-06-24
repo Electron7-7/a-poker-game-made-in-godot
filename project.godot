@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 global_MenuManager="*res://managers/menu_manager.gd"
 global_GameManager="*res://managers/game_manager.gd"
+global_NetworkManager="*res://managers/network_manager.gd"
 global_SettingsManager="*res://managers/settings_manager.gd"
 global_WorldManager="*res://managers/world_manager.gd"
 

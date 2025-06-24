@@ -12,11 +12,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_ij7vn")
 script = ExtResource("1_ij7vn")
+metadata/_edit_lock_ = true
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
+metadata/_edit_lock_ = true
 
 [node name="MainMenu" type="VBoxContainer" parent="CenterContainer"]
 unique_name_in_owner = true
@@ -106,3 +108,4 @@ size_flags_horizontal = 3
 theme = ExtResource("2_ij7vn")
 theme_type_variation = &"WorldSelectButton"
 text = "test"
+metadata/_edit_lock_ = true

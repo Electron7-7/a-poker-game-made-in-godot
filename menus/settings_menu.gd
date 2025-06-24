@@ -28,7 +28,6 @@ func get_settings() -> Dictionary[String, Variant]:
 
 func _confirm_clear_settings() -> void:
     _confirm_clear.visible = true
-    _confirm_clear.confirmed.connect(clear_settings)
 
 func clear_settings() -> void:
     global_GameManager.DANGEROUS_ClearAllSaveData()
@@ -53,6 +52,7 @@ func _ready() -> void:
     _save_button.pressed.connect(save_settings)
     _clear_button.pressed.connect(_confirm_clear_settings)
     _player_name.text_changed.connect(_unsaved_changes)
+    _confirm_clear.confirmed.connect(clear_settings)
     # connect all settings' relevant "-changed-" signals to "_unsaved_changes"
 
 func _go_back() -> void:

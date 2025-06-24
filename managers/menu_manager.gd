@@ -1,6 +1,7 @@
 class_name MenuManager extends Control
 
 static var _main_menu : Control = preload("res://menus/main_menu.tscn").instantiate()
+static var settings_menu : Control = preload("res://menus/settings_menu.tscn").instantiate()
 
 func _init() -> void:
     _main_menu.visible = false

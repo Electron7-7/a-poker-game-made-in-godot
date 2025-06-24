@@ -1,18 +1,98 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4kccfefvltc"]
+[gd_scene load_steps=4 format=3 uid="uid://cumpcrr7w2obm"]
 
-[ext_resource type="Script" uid="uid://bki0uyd6jfn5t" path="res://menus/_menu.gd" id="1_v1dxd"]
-[ext_resource type="Script" uid="uid://dqc1ofe0x7ufp" path="res://menus/_loader.gd" id="2_n4a8d"]
+[ext_resource type="Theme" uid="uid://blvtl6fyy5r6g" path="res://menus/default_theme.tres" id="1_83qjl"]
+[ext_resource type="Script" uid="uid://b5jw2psfkgxsh" path="res://menus/settings_menu.gd" id="2_v0bl3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v0bl3"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_v1dxd")
-metadata/_custom_type_script = ExtResource("1_v1dxd")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_83qjl")
+script = ExtResource("2_v0bl3")
 
-[node name="Loader" type="Button" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1129.0
+offset_bottom = 630.0
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.05
+anchor_right = 0.98
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = 480
+dragging_enabled = false
+dragger_visibility = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VSplitContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VSplitContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VSplitContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Player Name:"
+
+[node name="PlayerName" type="LineEdit" parent="Panel/VSplitContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "thelegend27"
+expand_to_text_length = true
+select_all_on_focus = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VSplitContainer"]
+layout_mode = 2
+
+[node name="Save" type="Button" parent="Panel/VSplitContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Save Settings"
+
+[node name="Back" type="Button" parent="Panel/VSplitContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 text = "Back"
-script = ExtResource("2_n4a8d")
-metadata/_custom_type_script = ExtResource("2_n4a8d")
+
+[node name="VSeparator" type="VSeparator" parent="Panel/VSplitContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_v0bl3")
+
+[node name="Clear" type="Button" parent="Panel/VSplitContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.93, 0.3534, 0.3534, 1)
+text = "Clear Settings"
+
+[node name="ConfirmClear" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+initial_position = 1
+size = Vector2i(460, 180)
+transient_to_focused = true
+sharp_corners = true
+dialog_text = "Do you really want to reset all your settings?"
+dialog_autowrap = true
+
+[node name="ClearNotify" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "Settings Reset"
+initial_position = 2
+size = Vector2i(555, 298)
+sharp_corners = true
+dialog_text = "Settings Data Cleared.
+
+A backup of your last saved settings was also made, just in case :3"
+dialog_autowrap = true

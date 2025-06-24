@@ -1,31 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxnt4m1x7ocog"]
+[gd_scene load_steps=3 format=3 uid="uid://dxnt4m1x7ocog"]
 
-[ext_resource type="Theme" uid="uid://blvtl6fyy5r6g" path="res://menus/default_theme.tres" id="1_rqbgu"]
-[ext_resource type="Script" uid="uid://bki0uyd6jfn5t" path="res://menus/_menu.gd" id="2_oblsv"]
-[ext_resource type="Script" uid="uid://dqc1ofe0x7ufp" path="res://menus/_loader.gd" id="3_a63lr"]
-[ext_resource type="PackedScene" uid="uid://b4kccfefvltc" path="res://menus/settings_menu.tscn" id="4_pwbes"]
+[ext_resource type="Script" uid="uid://d0c7n1bwxv5sn" path="res://menus/main_menu.gd" id="1_ij7vn"]
+[ext_resource type="PackedScene" uid="uid://cumpcrr7w2obm" path="res://menus/settings_menu.tscn" id="4_pwbes"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-theme = ExtResource("1_rqbgu")
-script = ExtResource("2_oblsv")
-metadata/_custom_type_script = ExtResource("2_oblsv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ij7vn")
 
-[node name="PanelContainer" type="VBoxContainer" parent="."]
+[node name="MainMenu" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 368.0
 offset_top = 272.0
 offset_right = 800.0
 offset_bottom = 373.0
 
-[node name="Settings" type="Button" parent="PanelContainer"]
+[node name="Settings" type="Button" parent="MainMenu"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Settings"
-script = ExtResource("3_a63lr")
-menu_to_load = ExtResource("4_pwbes")
-metadata/_custom_type_script = ExtResource("3_a63lr")
 
-[node name="Exit" type="Button" parent="PanelContainer"]
+[node name="Exit" type="Button" parent="MainMenu"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Exit"
+
+[node name="SettingsMenu" parent="." instance=ExtResource("4_pwbes")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1

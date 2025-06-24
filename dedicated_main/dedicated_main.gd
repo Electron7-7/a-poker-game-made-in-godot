@@ -23,4 +23,5 @@ func _init() -> void:
     Engine.physics_ticks_per_second = Common._TICK_RATE
 
 func _ready() -> void:
-    global_MenuManager.LoadRootMenu(MainMenu)
+    global_GameManager.InitSaveData()
+    global_MenuManager.ShowMainMenu()

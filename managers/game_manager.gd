@@ -19,14 +19,14 @@ func _notification(what: int) -> void:
             printerr("Something went wrong while writing to the save file! There should be a backup save file that you can use to manually fix/update the main save file.")
 
 func DANGEROUS_ClearAllSaveData() -> void:
-    _save_file.save(_save_file_backup)
+    _save_file.save(_save_file_backup) # Make backup of save data
     _save_file = ConfigFile.new()
-    _save_file.save(_save_file_main)
+    _save_file.save(_save_file_main) # Instantiate new empty save file
 
 func InitSaveData() -> void:
     if(_save_file.load(_save_file_main) != OK): # Try to load the save file
         if(_save_file.load(_save_file_backup) != OK): # Try to load the backup file
-            _save_file.save(_save_file_main) # Create a fresh save file
+            _save_file.save(_save_file_main) # Instantiate new empty save file
 
 func SaveAll() -> Error:
     _save_file.save(_save_file_backup)
@@ -53,9 +53,9 @@ func Load(section : String, key : String) -> SafeReturn:
         return SafeReturn.new(ERR_DOES_NOT_EXIST, null)
     return SafeReturn.new(OK, _save_file.get_value(section, key))
 
-func LoadSection(section : String) -> SafeReturn:
+func LoadSection(section : String, default_values : Dictionary[String, Variant]) -> SafeReturn:
     if(!_save_file.has_section(section)):
-        return SafeReturn.new(ERR_DOES_NOT_EXIST, null)
+        SaveSection(section, default_values)
     var keys : PackedStringArray = _save_file.get_section_keys(section)
     var data : Dictionary[String, Variant] = {}
     for key in keys:

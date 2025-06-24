@@ -14,6 +14,12 @@ const _settings_section : String = "Settings"
 @onready var _clear_button : Button   = $"%Clear"
 @onready var _player_name  : LineEdit = $"%PlayerName"
 
+func get_default_settings() -> Dictionary[String, Variant]:
+    return \
+    {
+        _player_name.name: "",
+    }
+
 func get_settings() -> Dictionary[String, Variant]:
     return \
     {
@@ -35,10 +41,7 @@ func save_settings() -> void:
     _save_button.disabled = true
 
 func load_settings() -> void:
-    var try_get_settings : SafeReturn = global_GameManager.LoadSection(_settings_section)
-    if(!try_get_settings.is_ok()):
-        printerr("SettingsMenu::load_settings() - Something went wrong while loading settings from the settings file!")
-        return
+    var try_get_settings : SafeReturn = global_GameManager.LoadSection(_settings_section, get_default_settings())
     var data : Dictionary[String, Variant] = try_get_settings.get_data()
     _player_name.text = data.get(_player_name.name)
 
@@ -51,7 +54,6 @@ func _ready() -> void:
     _clear_button.pressed.connect(_confirm_clear_settings)
     _player_name.text_changed.connect(_unsaved_changes)
     # connect all settings' relevant "-changed-" signals to "_unsaved_changes"
-    load_settings()
 
 func _go_back() -> void:
     close.emit()

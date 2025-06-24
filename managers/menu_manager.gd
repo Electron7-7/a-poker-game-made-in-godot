@@ -22,6 +22,9 @@ func _solo_menu(menu : Control) -> void:
         _deactivate_menu(child as Control)
     _activate_menu(menu)
 
+func InitSettings() -> void:
+    settings_menu.load_settings()
+
 func ShowMainMenu() -> void:
     _solo_menu(main_menu)
 

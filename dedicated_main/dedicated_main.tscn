@@ -4,4 +4,4 @@
 
 [node name="DedicatedMain" type="Node"]
 script = ExtResource("1_2ehky")
-metadata/_custom_type_script = ExtResource("1_2ehky")
+metadata/_custom_type_script = "uid://c7kgi2me6w6cb"

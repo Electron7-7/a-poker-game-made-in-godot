@@ -24,4 +24,5 @@ func _init() -> void:
 
 func _ready() -> void:
     global_GameManager.InitSaveData()
+    global_MenuManager.InitSettings()
     global_MenuManager.ShowMainMenu()

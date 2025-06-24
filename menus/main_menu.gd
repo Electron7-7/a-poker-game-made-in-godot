@@ -14,4 +14,7 @@ func try_exit() -> void:
     get_tree().quit()
 
 func toggle_settings(toggle_on : bool) -> void:
-    _main_menu.visible     = !toggle_on
+    if(toggle_on):
+        global_MenuManager.SwitchMenus(self, global_MenuManager.settings_menu)
+        return
+    global_MenuManager.SwitchMenus(global_MenuManager.settings_menu, self)

@@ -71,7 +71,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("StyleBoxEmpty_v0bl3")
 
-[node name="Clear" type="Button" parent="Panel/VSplitContainer/HBoxContainer"]
+[node name="ClearBackups" type="Button" parent="Panel/VSplitContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0.93, 0.3534, 0.3534, 1)
+text = "Clear Backups"
+
+[node name="ClearSettings" type="Button" parent="Panel/VSplitContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0

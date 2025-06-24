@@ -9,10 +9,11 @@ const _settings_section : String = "Settings"
 
 @onready var _confirm_clear : ConfirmationDialog = $"%ConfirmClear"
 @onready var _clear_notify  : AcceptDialog       = $"%ClearNotify"
-@onready var _back_button  : Button   = $"%Back"
-@onready var _save_button  : Button   = $"%Save"
-@onready var _clear_button : Button   = $"%Clear"
-@onready var _player_name  : LineEdit = $"%PlayerName"
+@onready var _back_button : Button = $"%Back"
+@onready var _save_button : Button = $"%Save"
+@onready var _clear_settings : Button = $"%ClearSettings"
+@onready var _clear_backups  : Button = $"%ClearBackups"
+@onready var _player_name : LineEdit = $"%PlayerName"
 
 func get_default_settings() -> Dictionary[String, Variant]:
     return \
@@ -31,18 +32,26 @@ func _confirm_clear_settings() -> void:
 
 func clear_settings() -> void:
     global_GameManager.DANGEROUS_ClearAllSaveData()
-    load_settings()
     _clear_notify.visible = true
+    _clear_settings.disabled = true
+    _clear_backups.disabled = !global_GameManager.HasBackups()
+    load_settings()
+    global_GameManager.SaveToFile()
+
+func _clear_backup_saves() -> void:
+    global_GameManager.DANGEROUS_ClearBackupSaveData()
+    _clear_backups.disabled = !global_GameManager.HasBackups()
 
 func save_settings() -> void:
     global_GameManager.SaveSection(_settings_section, get_settings())
-    global_GameManager.SaveAll() # FIXME: remove from here and place before application exit, instead
+    global_GameManager.SaveToFile()
+    _clear_backups.disabled = false
+    _clear_settings.disabled = false
     _save_button.disabled = true
 
 func load_settings() -> void:
-    var try_get_settings : SafeReturn = global_GameManager.LoadSection(_settings_section, get_default_settings())
-    var data : Dictionary[String, Variant] = try_get_settings.get_data()
-    _player_name.text = data.get(_player_name.name)
+    var loaded_settings : Dictionary[String, Variant] = global_GameManager.LoadSection(_settings_section, get_default_settings()).get_data()
+    _player_name.text = loaded_settings.get(_player_name.name)
 
 func _unsaved_changes(_unused) -> void:
     _save_button.disabled = false
@@ -50,9 +59,12 @@ func _unsaved_changes(_unused) -> void:
 func _ready() -> void:
     _back_button.pressed.connect(_go_back)
     _save_button.pressed.connect(save_settings)
-    _clear_button.pressed.connect(_confirm_clear_settings)
-    _player_name.text_changed.connect(_unsaved_changes)
+    _clear_settings.pressed.connect(_confirm_clear_settings)
+    _clear_backups.pressed.connect(_clear_backup_saves)
+    _clear_backups.disabled = !global_GameManager.HasBackups()
     _confirm_clear.confirmed.connect(clear_settings)
+
+    _player_name.text_changed.connect(_unsaved_changes)
     # connect all settings' relevant "-changed-" signals to "_unsaved_changes"
 
 func _go_back() -> void:

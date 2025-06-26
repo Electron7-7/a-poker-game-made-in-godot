@@ -43,6 +43,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 disabled = true
+toggle_mode = true
 text = "Continue"
 
 [node name="Settings" type="Button" parent="CenterContainer/MainMenu"]

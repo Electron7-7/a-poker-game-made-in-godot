@@ -29,6 +29,7 @@ func Init() -> void:
     settings_menu.load_settings()
 
 func CloseAllMenus() -> void:
+    _pause_menu_last_visible = true;
     DeactivateMenu(main_menu)
     DeactivateMenu(settings_menu)
     DeactivateMenu(server_menu)

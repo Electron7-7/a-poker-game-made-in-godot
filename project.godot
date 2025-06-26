@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Schedule_1_Multiplayer"
-run/main_scene="res://dedicated_main/dedicated_main.tscn"
+run/main_scene="uid://do2p13ax6dwwt"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

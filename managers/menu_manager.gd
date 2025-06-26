@@ -4,21 +4,22 @@ static var main_menu : Control = preload("res://menus/main_menu.tscn").instantia
 static var settings_menu : Control = preload("res://menus/settings_menu.tscn").instantiate()
 static var server_menu : Control = preload("res://menus/server_menu.tscn").instantiate()
 
-func _activate_menu(menu : Control) -> void:
-    if(menu == main_menu):
-        menu.set_pause_menu(global_GameManager.IsGameRunning())
+static var _pause_menu_last_visible : bool = true
+
+func TogglePauseMenu() -> void:
+    if(main_menu.visible == _pause_menu_last_visible):
+        return
+    _pause_menu_last_visible = main_menu.visible
+    main_menu.visible = !main_menu.visible
+
+func ActivateMenu(menu : Control) -> void:
     menu.visible = true
 
-func _deactivate_menu(menu : Control) -> void:
+func DeactivateMenu(menu : Control) -> void:
     menu.visible = false
 
-func _solo_menu(menu : Control) -> void:
-    for child in get_children():
-        _deactivate_menu(child as Control)
-    _activate_menu(menu)
-
 func Init() -> void:
-    main_menu.visible = false
+    main_menu.visible = true
     settings_menu.visible = false
     server_menu.visible = false
     add_child(main_menu)
@@ -26,10 +27,24 @@ func Init() -> void:
     add_child(server_menu)
     main_menu.Init()
     settings_menu.load_settings()
-    _solo_menu(main_menu)
+
+func CloseAllMenus() -> void:
+    DeactivateMenu(main_menu)
+    DeactivateMenu(settings_menu)
+    DeactivateMenu(server_menu)
+
+func ReturnToMainMenu() -> void:
+    CloseAllMenus()
+    ActivateMenu(main_menu)
 
 func SwitchMenus(to: Control, from : Control = null) -> void:
-    _activate_menu(to)
+    if(to == main_menu):
+        to.set_visible_items(global_GameManager.IsGameRunning())
+    ActivateMenu(to)
     if(from == null):
         return
-    _deactivate_menu(from)
+    DeactivateMenu(from)
+
+func _input(event: InputEvent) -> void:
+    if(event.is_action_pressed("ui_cancel") && global_GameManager.IsGameRunning()):
+        TogglePauseMenu()

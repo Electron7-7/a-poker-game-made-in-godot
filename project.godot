@@ -28,6 +28,10 @@ global_WorldManager="*res://managers/world_manager.gd"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[global_group]
+
+Persist="Nodes that will be saved (as long as they have a 'save' function)"
+
 [physics]
 
 3d/run_on_separate_thread=true

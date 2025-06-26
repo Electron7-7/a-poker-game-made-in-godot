@@ -1,6 +1,23 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://blvtl6fyy5r6g"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://blvtl6fyy5r6g"]
 
 [ext_resource type="FontFile" uid="uid://dtsickda5aw1n" path="res://fonts/Audiowide-Regular.ttf" id="1_7454o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6d0am"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.4, 0.296, 0.31680003, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.36, 0.20880002, 0.20880002, 0.1764706)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3w4u"]
 bg_color = Color(0.5796, 0.58512, 0.69, 0.196078)
@@ -30,6 +47,8 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [resource]
+default_font = ExtResource("1_7454o")
+AcceptDialog/styles/panel = SubResource("StyleBoxFlat_6d0am")
 Button/font_sizes/font_size = 24
 Button/fonts/font = ExtResource("1_7454o")
 HBoxContainer/constants/separation = 8

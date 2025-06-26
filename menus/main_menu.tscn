@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxnt4m1x7ocog"]
+[gd_scene load_steps=4 format=3 uid="uid://dxnt4m1x7ocog"]
 
 [ext_resource type="Script" uid="uid://d0c7n1bwxv5sn" path="res://menus/main_menu.gd" id="1_ij7vn"]
 [ext_resource type="Theme" uid="uid://blvtl6fyy5r6g" path="res://menus/default_theme.tres" id="2_ij7vn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ij7vn"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -48,40 +50,56 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Settings"
 
-[node name="HostingButtons" type="HBoxContainer" parent="CenterContainer/MainMenu"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 0
-alignment = 2
-
-[node name="Button" type="Button" parent="CenterContainer/MainMenu/HostingButtons"]
-layout_mode = 2
-text = "Open to LAN"
-
-[node name="Button2" type="Button" parent="CenterContainer/MainMenu/HostingButtons"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Host P2P"
-
-[node name="Button3" type="Button" parent="CenterContainer/MainMenu/HostingButtons"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Host via Steam"
-
 [node name="Exit" type="Button" parent="CenterContainer/MainMenu"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Exit"
 
-[node name="Quit" type="Button" parent="CenterContainer/MainMenu"]
+[node name="PauseMenu" type="VBoxContainer" parent="CenterContainer"]
 unique_name_in_owner = true
 visible = false
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="Resume" type="Button" parent="CenterContainer/PauseMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back to Game"
+
+[node name="PauseSettings" type="Button" parent="CenterContainer/PauseMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings"
+
+[node name="HostingButtons" type="HBoxContainer" parent="CenterContainer/PauseMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 2
+
+[node name="OpenToLan" type="Button" parent="CenterContainer/PauseMenu/HostingButtons"]
+layout_mode = 2
+text = "Open to LAN"
+
+[node name="HostP2P" type="Button" parent="CenterContainer/PauseMenu/HostingButtons"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Host P2P"
+
+[node name="HostViaSteam" type="Button" parent="CenterContainer/PauseMenu/HostingButtons"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Host via Steam"
+
+[node name="Quit" type="Button" parent="CenterContainer/PauseMenu"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Quit to Menu"
 
-[node name="Saves" type="ScrollContainer" parent="."]
+[node name="Saves" type="ScrollContainer" parent="." groups=["StartHidden"]]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 784.0
 offset_top = 256.0
@@ -96,10 +114,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="_WorldTemplate" type="Button" parent="."]
+[node name="_WorldTemplate" type="Button" parent="." groups=["StartHidden"]]
 unique_name_in_owner = true
 visible = false
-layout_mode = 2
+layout_mode = 0
 offset_left = 814.0
 offset_top = 272.0
 offset_right = 1137.0
@@ -109,3 +127,73 @@ theme = ExtResource("2_ij7vn")
 theme_type_variation = &"WorldSelectButton"
 text = "test"
 metadata/_edit_lock_ = true
+
+[node name="ConfirmQuit" type="ConfirmationDialog" parent="." groups=["StartHidden"]]
+unique_name_in_owner = true
+oversampling_override = 1.0
+title = "Quit Confirmation"
+initial_position = 1
+size = Vector2i(296, 305)
+unresizable = true
+borderless = true
+popup_wm_hint = true
+ok_button_text = "Yes"
+dialog_text = "Are you sure you want to quit?
+-------------------
+All unsaved progress will be lost!"
+dialog_autowrap = true
+cancel_button_text = "No"
+
+[node name="NewGameMenu" type="PanelContainer" parent="." groups=["StartHidden"]]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 354.0
+offset_top = 171.0
+offset_right = 804.0
+offset_bottom = 521.0
+metadata/_edit_group_ = true
+
+[node name="PanelContainer" type="VSplitContainer" parent="NewGameMenu"]
+layout_mode = 2
+split_offset = 300
+dragging_enabled = false
+dragger_visibility = 1
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NewGameMenu/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NewGameMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NewGameMenu/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "World Name:"
+
+[node name="WorldName" type="LineEdit" parent="NewGameMenu/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "BuildySuildy"
+expand_to_text_length = true
+select_all_on_focus = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NewGameMenu/PanelContainer"]
+clip_contents = true
+layout_mode = 2
+
+[node name="StartNewGame" type="Button" parent="NewGameMenu/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Start Game"
+
+[node name="VSeparator" type="VSeparator" parent="NewGameMenu/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ij7vn")
+
+[node name="CancelNewGame" type="Button" parent="NewGameMenu/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cancel"

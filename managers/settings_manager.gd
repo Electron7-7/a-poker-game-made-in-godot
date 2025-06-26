@@ -48,7 +48,7 @@ func Save(save_backup : bool = true) -> Error:
 func Load() -> void:
     if(settings_save_file.load(_settings_file_name()) != OK): # Try to load the save file
         var backup_files : PackedStringArray = settings_backups_dir.get_files()
-        if(settings_save_file.load(settings_backups_dir.get(settings_backups_dir.size() - 1)) != OK): # Try to load the latest backup file
+        if(settings_save_file.load(backup_files.get(backup_files.size() - 1)) != OK): # Try to load the latest backup file
             settings_save_file.save(_settings_file_name()) # Instantiate new empty save file
             return
 

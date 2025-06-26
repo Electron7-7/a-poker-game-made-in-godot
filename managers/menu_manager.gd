@@ -38,8 +38,6 @@ func ReturnToMainMenu() -> void:
     ActivateMenu(main_menu)
 
 func SwitchMenus(to: Control, from : Control = null) -> void:
-    if(to == main_menu):
-        to.set_visible_items(global_GameManager.IsGameRunning())
     ActivateMenu(to)
     if(from == null):
         return

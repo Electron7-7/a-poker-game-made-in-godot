@@ -149,7 +149,7 @@ func CheckAndCleanWorlds() -> void:
         var status : WorldStatus = GetWorldStatus(world)
         match status:
             WorldStatus.OK:
-                print_debug("%s is a valid world and will not be cleaned." % world)
+                #print_debug("%s is a valid world and will not be cleaned." % world)
                 continue
             WorldStatus.ERR_NO_SAVE:
                 print_debug("%s has no save file, but does have backups and will not be cleaned.")

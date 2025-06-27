@@ -56,6 +56,33 @@ placeholder_text = "thelegend27"
 expand_to_text_length = true
 select_all_on_focus = true
 
+[node name="Setting2" type="HBoxContainer" parent="Panel/FooterSeparator/Settings/SettingsList"]
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Panel/FooterSeparator/Settings/SettingsList/Setting2"]
+layout_mode = 2
+text = "Mouse Sensitivity"
+
+[node name="MouseSensitivityDisplay" type="Label" parent="Panel/FooterSeparator/Settings/SettingsList/Setting2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+theme_type_variation = &"SliderDisplay"
+text = "0.01"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="MouseSensitivitySlider" type="HSlider" parent="Panel/FooterSeparator/Settings/SettingsList/Setting2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01000000000931322
+value = 0.01000000000931322
+
 [node name="Footer" type="HBoxContainer" parent="Panel/FooterSeparator"]
 layout_mode = 2
 

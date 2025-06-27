@@ -7,10 +7,45 @@ const _settings_backups_dir := "backups/"
 const _settings_save_file_name := "settings"
 const _settings_backup_files_name := "settings_backup_"
 
+const NAMES : Dictionary[String, String] = \
+{
+    PlayerName = "PlayerName",
+    MouseSensitivity = "MouseSensitivity"
+}
+
+const DEFAULTS : Dictionary[String, Variant] = \
+{
+    NAMES.PlayerName: "TheLegend27",
+    NAMES.MouseSensitivity: 0.01
+}
+
+const TEMP_Section : String = "PlayerSettings" # Temporarily only using one section
+
 static var settings_backup_limit : int = 5 # Probably make this higher / let user decide
 static var settings_save_file := ConfigFile.new()
 static var settings_save_dir : DirAccess = null
 static var settings_backups_dir : DirAccess = null
+
+static var PlayerName : String = DEFAULTS.PlayerName
+static var MouseSensitivity : float = DEFAULTS.MouseSensitivity
+
+func UpdateSettings(Settings : Dictionary[String, Variant]) -> void:
+    PlayerName = Settings.get(NAMES.PlayerName)
+    MouseSensitivity = Settings.get(NAMES.MouseSensitivity)
+
+func SaveSettings(Settings : Dictionary[String, Variant]) -> void:
+    UpdateSettings(Settings)
+    SetSection(TEMP_Section, Settings)
+    Save()
+
+func ClearSettings() -> void:
+    SetSection(TEMP_Section, DEFAULTS)
+    UpdateSettings(DEFAULTS)
+
+func LoadSettings() -> Dictionary[String, Variant]:
+    var Settings : Dictionary[String, Variant] = GetSection(TEMP_Section, NAMES.values(), DEFAULTS.values())
+    UpdateSettings(Settings)
+    return Settings
 
 func _notification(what: int) -> void:
     if(what == Object.NOTIFICATION_PREDELETE): # Pseudo-Destructor
@@ -58,17 +93,22 @@ func HasBackups() -> bool:
 func SetValue(section : String, key : String, value : Variant) -> void:
     settings_save_file.set_value(section, key, value)
 
-func SetSection(section : String, data : Dictionary[String, Variant]) -> void:
-    for key in data:
-        SetValue(section, key, data.get(key))
+func Minimum(left : int, right : int) -> int:
+    return (0.5 * (left + right - abs(left - right)))
+
+func SetSection(section : String, values : Dictionary[String, Variant]) -> void:
+    for key in values:
+        SetValue(section, key, values.get(key))
 
 func GetValue(section : String, key : String, default : Variant) -> Variant:
     return settings_save_file.get_value(section, key, default)
 
-func GetSection(section : String, defaults : Dictionary[String, Variant]) -> Dictionary[String, Variant]:
+func GetSection(section : String, keys : Array[String], default_values : Array[Variant]) -> Dictionary[String, Variant]:
     var return_data : Dictionary[String, Variant] = {}
-    for key in defaults:
-        return_data[key] = GetValue(section, key, defaults.get(key))
+    if(keys.size() != default_values.size()):
+        printerr("SettingsManager::GetSection - Inequal number of keys and values! SettingsManager will choose the smaller of the two sizes to iterate up to")
+    for i in range(Minimum(keys.size(), default_values.size())):
+        return_data[keys.get(i)] = GetValue(section, keys.get(i), default_values.get(i))
     return return_data
 
 func DANGEROUS_CleanSaveFile() -> Error:

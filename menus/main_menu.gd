@@ -83,11 +83,13 @@ func _close_new_game_menu() -> void:
 func try_StartGame(world_name : String) -> void:
     if(global_GameManager.StartNewGame(world_name) == OK):
         global_MenuManager.CloseAllMenus()
+        MenuManager.SetMouseMode()
 
 func try_LoadGame(world_save : String) -> void:
     _saves.visible = false
     if(global_GameManager.LoadGame(world_save) == OK):
         global_MenuManager.CloseAllMenus()
+        MenuManager.SetMouseMode()
 
 func set_visible_items() -> void:
     var game_running : bool = global_GameManager.IsGameRunning()

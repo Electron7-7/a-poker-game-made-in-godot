@@ -6,11 +6,21 @@ static var server_menu : Control = preload("res://menus/server_menu.tscn").insta
 
 static var _pause_menu_last_visible : bool = true
 
+static func IsPauseMenuActive() -> bool:
+    return (main_menu.visible || settings_menu.visible)
+
+static func SetMouseMode() -> void:
+    if(IsPauseMenuActive()):
+        Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+    else:
+        Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 func TogglePauseMenu() -> void:
     if(main_menu.visible == _pause_menu_last_visible):
         return
     _pause_menu_last_visible = main_menu.visible
     main_menu.visible = !main_menu.visible
+    SetMouseMode()
 
 func ActivateMenu(menu : Control) -> void:
     menu.visible = true

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://blvtl6fyy5r6g"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://blvtl6fyy5r6g"]
 
 [ext_resource type="FontFile" uid="uid://dtsickda5aw1n" path="res://fonts/Audiowide-Regular.ttf" id="1_7454o"]
 
@@ -65,6 +65,21 @@ content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6od3n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qhu7v"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.12941177, 0.12941177, 0.12941177, 1)
+border_width_bottom = 2
+border_color = Color(0.07058824, 0.07058824, 0.07058824, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7454o"]
 bg_color = Color(0, 0.77, 0.385, 0.172549)
 corner_radius_top_left = 3
@@ -94,6 +109,10 @@ LineEdit/fonts/font = ExtResource("1_7454o")
 SavesScroll/base_type = &"ScrollContainer"
 SavesScroll/styles/panel = SubResource("StyleBoxFlat_e3w4u")
 ScrollContainer/styles/panel = SubResource("StyleBoxEmpty_7454o")
+SliderDisplay/base_type = &"Label"
+SliderDisplay/colors/font_color = Color(0.28235295, 0.5803922, 0.35686275, 1)
+SliderDisplay/styles/focus = SubResource("StyleBoxEmpty_6od3n")
+SliderDisplay/styles/normal = SubResource("StyleBoxFlat_qhu7v")
 WorldSelectButton/base_type = &"Button"
 WorldSelectButton/styles/hover = SubResource("StyleBoxFlat_7454o")
 WorldSelectButton/styles/pressed = SubResource("StyleBoxFlat_6od3n")

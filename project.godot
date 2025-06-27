@@ -31,6 +31,7 @@ window/stretch/aspect="expand"
 [global_group]
 
 Persist="Nodes that will be saved (as long as they have a 'save' function)"
+PlayerSpawn="A player spawn point"
 
 [physics]
 
@@ -39,3 +40,7 @@ common/physics_ticks_per_second=70
 common/physics_jitter_fix=0.0
 3d/physics_engine="Jolt Physics"
 common/physics_interpolation=true
+
+[rendering]
+
+environment/defaults/default_environment="uid://2r02414ncg7t"

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmnfff4ro2w5w"]
+
+[ext_resource type="Script" uid="uid://btx2seojwqc0f" path="res://things/actors/godot_player.gd" id="1_n081u"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m6no7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m6no7"]
+size = Vector3(1, 2, 1)
+
+[node name="GodotPlayer" type="CharacterBody3D"]
+script = ExtResource("1_n081u")
+metadata/_custom_type_script = "uid://btx2seojwqc0f"
+
+[node name="Head" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+rotation_edit_mode = 1
+
+[node name="MainCamera" type="Camera3D" parent="Head"]
+current = true
+fov = 85.0
+near = 0.01
+
+[node name="BodyCollider" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CapsuleShape3D_m6no7")
+
+[node name="BoundingBox" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="BoundingBoxShape" type="CollisionShape3D" parent="BoundingBox"]
+shape = SubResource("BoxShape3D_m6no7")

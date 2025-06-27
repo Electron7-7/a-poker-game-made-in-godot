@@ -1,12 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://disimm03y0k03"]
+[gd_scene load_steps=6 format=3 uid="uid://disimm03y0k03"]
 
 [ext_resource type="Script" uid="uid://crtcntar8hbpb" path="res://main/world.gd" id="1_ch0rr"]
-[ext_resource type="Script" uid="uid://cfx0mitfk3py4" path="res://attributes/persistent.gd" id="3_b3acj"]
+[ext_resource type="Script" uid="uid://c2bj2obe30rpq" path="res://things/thinkers/player_spawn.gd" id="2_cadw0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cadw0"]
+render_priority = -1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.025
+stencil_mode = 3
+stencil_flags = 3
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdvrk"]
+next_pass = SubResource("StandardMaterial3D_cadw0")
+albedo_color = Color(1, 0, 1, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_outline_thickness = 0.025
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_b3acj"]
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_ch0rr")
 
-[node name="Tester" type="Node" parent="."]
+[node name="PlayerSpawn" type="Marker3D" parent="." groups=["PlayerSpawn"]]
+script = ExtResource("2_cadw0")
+metadata/_custom_type_script = "uid://c2bj2obe30rpq"
 
-[node name="is_persistent" type="Node" parent="Tester"]
-script = ExtResource("3_b3acj")
+[node name="@MeshInstance3D@21037" type="MeshInstance3D" parent="PlayerSpawn"]
+material_override = SubResource("StandardMaterial3D_sdvrk")
+mesh = SubResource("CapsuleMesh_b3acj")
+
+[node name="TestGeometry" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="TestGeometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -2, -0.5)
+size = Vector3(10, 1, 10)

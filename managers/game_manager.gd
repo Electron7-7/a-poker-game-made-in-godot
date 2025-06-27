@@ -1,8 +1,12 @@
 class_name GameManager extends Node3D
 
+const MainWorld : PackedScene = preload("res://main/world.tscn")
+const Player : PackedScene = preload("res://things/actors/godot_player.tscn")
+
 var _stop_requested  : bool = false
 var _process_stopped : bool = true
 var _physics_process_stopped : bool = true
+var world : World = null
 
 func IsGameRunning() -> bool:
     return (!_process_stopped || !_physics_process_stopped)
@@ -31,11 +35,17 @@ func _start() -> void:
     _stop_requested = false
     _process_stopped = false
     _physics_process_stopped = false
+    world = MainWorld.instantiate()
+    add_child(world, true)
+    var new_player : GodotPlayer = Player.instantiate()
+    world.add_child(new_player, true)
+    new_player.position = get_tree().get_nodes_in_group(PlayerSpawn.GroupName).get(0).position
 
 func StopGame() -> void:
     if(_stop_requested):
         return
     _stop_requested = IsGameRunning()
+    world.queue_free()
 
 func _check_if_game_stopped() -> void:
     if(!_process_stopped || !_physics_process_stopped):

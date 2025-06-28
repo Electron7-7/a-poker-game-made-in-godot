@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cef13eqno6dyv"
-path="res://.godot/imported/Arial.ttf-97eabb749703561fec8ca209d3f66e41.fontdata"
+uid="uid://x57hu1uqqpwg"
+path="res://.godot/imported/Tr2n.ttf-ad56745c645fa3af1c8df08f963a2b96.fontdata"
 
 [deps]
 
-source_file="res://fonts/Arial.ttf"
-dest_files=["res://.godot/imported/Arial.ttf-97eabb749703561fec8ca209d3f66e41.fontdata"]
+source_file="res://resources/fonts/Tr2n.ttf"
+dest_files=["res://.godot/imported/Tr2n.ttf-ad56745c645fa3af1c8df08f963a2b96.fontdata"]
 
 [params]
 

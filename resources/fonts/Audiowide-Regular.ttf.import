@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://sw3uexq5fkks"
-path="res://.godot/imported/Verdana.ttf-2efdc6ad9d44d48c6750aaed10a692ba.fontdata"
+uid="uid://dtsickda5aw1n"
+path="res://.godot/imported/Audiowide-Regular.ttf-ed2ab72493d6bcbbde1e352f092b1620.fontdata"
 
 [deps]
 
-source_file="res://fonts/Verdana.ttf"
-dest_files=["res://.godot/imported/Verdana.ttf-2efdc6ad9d44d48c6750aaed10a692ba.fontdata"]
+source_file="res://resources/fonts/Audiowide-Regular.ttf"
+dest_files=["res://.godot/imported/Audiowide-Regular.ttf-ed2ab72493d6bcbbde1e352f092b1620.fontdata"]
 
 [params]
 

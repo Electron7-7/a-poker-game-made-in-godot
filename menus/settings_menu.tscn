@@ -80,7 +80,7 @@ select_all_on_focus = true
 
 [node name="MouseSensitivitySlider" type="HSlider" parent="Panel/FooterSeparator/Settings/SettingsList/Setting2"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
 size_flags_vertical = 1
 max_value = 1.0

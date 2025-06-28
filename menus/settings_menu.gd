@@ -12,6 +12,8 @@ signal close
 @onready var _mouse_sensitivity_display : Label = $"%MouseSensitivityDisplay"
 @onready var _mouse_sensitivity_slider : HSlider = $"%MouseSensitivitySlider"
 @onready var _mouse_sensitivity_multiplier : LineEdit = $"%SensitivityMultiplier"
+@onready var _fov_display : Label = $"%FOVDisplay"
+@onready var _fov_slider : HSlider = $"%FOV"
 
 func get_settings() -> Dictionary[String, Variant]:
     return \
@@ -19,6 +21,7 @@ func get_settings() -> Dictionary[String, Variant]:
         SettingsManager.NAMES.PlayerName: _player_name.text,
         SettingsManager.NAMES.MouseSensitivity: _mouse_sensitivity_slider.value,
         SettingsManager.NAMES.MouseSensitivityScale: _valid_sensitivity_multiplier(),
+        SettingsManager.NAMES.FOV: _fov_slider.value
     }
 
 func _valid_sensitivity_multiplier() -> float:
@@ -54,6 +57,7 @@ func load_settings() -> void:
     _player_name.text = loaded_settings.get(SettingsManager.NAMES.PlayerName)
     _mouse_sensitivity_slider.value = loaded_settings.get(SettingsManager.NAMES.MouseSensitivity)
     _mouse_sensitivity_multiplier.text = String("%.2f" % loaded_settings.get(SettingsManager.NAMES.MouseSensitivityScale))
+    _fov_slider.value = loaded_settings.get(SettingsManager.NAMES.FOV)
 
 func _unsaved_changes(_unused = null) -> void:
     _save_button.disabled = false
@@ -62,12 +66,25 @@ func _mouse_sensitivity_changed(new_value : float) -> void:
     _unsaved_changes()
     _mouse_sensitivity_display.text = String("%.2f" % new_value)
 
+func _fov_changed(new_value : float) -> void:
+    _unsaved_changes()
+    _fov_display.text = String("%3d" % new_value)
+
+func _input(event: InputEvent) -> void:
+    if(event.is_action("ui_cancel") && visible):
+        _go_back()
+
+func Init() -> void:
+    load_settings()
+    _save_button.disabled = true
+
 func _ready() -> void:
     # Settings signals
     # connect all settings' relevant "-changed-" signals to functions
     _player_name.text_changed.connect(_unsaved_changes)
     _mouse_sensitivity_slider.value_changed.connect(_mouse_sensitivity_changed)
     _mouse_sensitivity_multiplier.text_changed.connect(_unsaved_changes)
+    _fov_slider.value_changed.connect(_fov_changed)
 
     # other signal connections that aren't from settings
     _back_button.pressed.connect(_go_back)

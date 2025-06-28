@@ -12,6 +12,7 @@ const NAMES : Dictionary[String, String] = \
     PlayerName = "PlayerName",
     MouseSensitivity = "MouseSensitivity",
     MouseSensitivityScale = "MouseSensitivityScale",
+    FOV = "FOV"
 }
 
 const DEFAULTS : Dictionary[String, Variant] = \
@@ -19,6 +20,7 @@ const DEFAULTS : Dictionary[String, Variant] = \
     NAMES.PlayerName: "TheLegend27",
     NAMES.MouseSensitivity: 0.01,
     NAMES.MouseSensitivityScale: 1.00,
+    NAMES.FOV: 85
 }
 
 const TEMP_Section : String = "PlayerSettings" # Temporarily only using one section
@@ -31,11 +33,14 @@ static var settings_backups_dir : DirAccess = null
 static var PlayerName : String = DEFAULTS.PlayerName
 static var MouseSensitivity : float = DEFAULTS.MouseSensitivity
 static var MouseSensitivityScale : float = DEFAULTS.MouseSensitivityScale
+static var FOV : int = DEFAULTS.FOV
 
 func UpdateSettings(Settings : Dictionary[String, Variant]) -> void:
     PlayerName = Settings.get(NAMES.PlayerName)
     MouseSensitivity = Settings.get(NAMES.MouseSensitivity)
     MouseSensitivityScale = Settings.get(NAMES.MouseSensitivityScale)
+    FOV = Settings.get(NAMES.FOV)
+    global_GameManager.GetCurrentPlayer().set_fov(FOV)
 
 func SaveSettings(Settings : Dictionary[String, Variant]) -> void:
     UpdateSettings(Settings)

@@ -1,9 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxnt4m1x7ocog"]
+[gd_scene load_steps=5 format=3 uid="uid://dxnt4m1x7ocog"]
 
 [ext_resource type="Script" uid="uid://d0c7n1bwxv5sn" path="res://menus/main_menu.gd" id="1_ij7vn"]
 [ext_resource type="Theme" uid="uid://blvtl6fyy5r6g" path="res://menus/default_theme.tres" id="2_ij7vn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ij7vn"]
+
+[sub_resource type="Theme" id="Theme_ij7vn"]
+Label/font_sizes/font_size = 16
+LineEdit/font_sizes/font_size = 16
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -198,3 +202,38 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_ij7vn")
 unique_name_in_owner = true
 layout_mode = 2
 text = "Cancel"
+
+[node name="DebugMenu" type="FoldableContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 139.0
+offset_right = 366.0
+offset_bottom = 579.0
+theme = SubResource("Theme_ij7vn")
+folded = true
+title = "DEBUG MENU"
+title_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugMenu"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DebugMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Framerate Cap"
+
+[node name="FPS" type="LineEdit" parent="DebugMenu/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "0 (unlimited)"
+max_length = 3
+expand_to_text_length = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+select_all_on_focus = true

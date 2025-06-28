@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://disimm03y0k03"]
+[gd_scene load_steps=9 format=3 uid="uid://disimm03y0k03"]
 
 [ext_resource type="Script" uid="uid://crtcntar8hbpb" path="res://main/world.gd" id="1_ch0rr"]
 [ext_resource type="Script" uid="uid://c2bj2obe30rpq" path="res://things/thinkers/player_spawn.gd" id="2_cadw0"]
+[ext_resource type="Material" uid="uid://kuj3bw5bet02" path="res://resources/materials/dev_mat_light_grey.tres" id="3_sdvrk"]
+[ext_resource type="Material" uid="uid://cro58we6chbfr" path="res://resources/materials/dev_mat_orange.tres" id="4_b3acj"]
+[ext_resource type="Material" uid="uid://dfkgkjy7bwns3" path="res://resources/materials/dev_mat_green.tres" id="5_mnuad"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cadw0"]
 render_priority = -1
@@ -31,13 +34,44 @@ script = ExtResource("1_ch0rr")
 script = ExtResource("2_cadw0")
 metadata/_custom_type_script = "uid://c2bj2obe30rpq"
 
-[node name="@MeshInstance3D@21037" type="MeshInstance3D" parent="PlayerSpawn"]
+[node name="@MeshInstance3D@21041" type="MeshInstance3D" parent="PlayerSpawn"]
 material_override = SubResource("StandardMaterial3D_sdvrk")
 mesh = SubResource("CapsuleMesh_b3acj")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0, 0)
+
 [node name="TestGeometry" type="CSGCombiner3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="TestGeometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -2, -0.5)
-size = Vector3(10, 1, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -2, 2)
+size = Vector3(26, 1, 31)
+material = ExtResource("3_sdvrk")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="TestGeometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -1, 4)
+material_override = ExtResource("4_b3acj")
+size = Vector3(8, 1, 1)
+material = ExtResource("4_b3acj")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="TestGeometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, -1, 9.5)
+size = Vector3(2, 1, 2)
+material = ExtResource("5_mnuad")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="TestGeometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 10)
+size = Vector3(2, 1, 1)
+material = ExtResource("5_mnuad")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="TestGeometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 11.5)
+size = Vector3(2, 3, 2)
+material = ExtResource("5_mnuad")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="TestGeometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2, 12)
+size = Vector3(2, 1, 1)
+material = ExtResource("5_mnuad")

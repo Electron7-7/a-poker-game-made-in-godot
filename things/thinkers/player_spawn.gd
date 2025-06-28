@@ -22,12 +22,12 @@ func set_global_preview() -> void:
         child.OutlineThickness = OutlineThickness
 
 func _editor_ready() -> void:
-    for child in get_children(true):
-        child.free()
     add_child(_editor_preview, false, INTERNAL_MODE_FRONT)
     get_child(0, true).owner = get_tree().edited_scene_root
 
 func _ready() -> void:
     add_to_group(GroupName, true)
+    for child in get_children(true):
+        child.free()
     if(Engine.is_editor_hint()):
         _editor_ready()

@@ -1,5 +1,7 @@
 extends Control
 
+@onready var _debug_fps  : LineEdit = $"%FPS"
+
 @onready var _main_menu  : VBoxContainer = $"%MainMenu"
 @onready var _pause_menu : VBoxContainer = $"%PauseMenu"
 
@@ -20,6 +22,8 @@ extends Control
 @onready var _cancel_new_game : Button = $"%CancelNewGame"
 
 func Init() -> void:
+    _debug_fps.text_submitted.connect(DEBUG_set_fps_limit)
+
     _exit_button.pressed.connect(try_exit)
     _settings_button.pressed.connect(toggle_settings.bind(true))
     _pause_settings.pressed.connect(toggle_settings.bind(true))
@@ -34,6 +38,10 @@ func Init() -> void:
     global_MenuManager.settings_menu.close.connect(toggle_settings.bind(false))
     self.visibility_changed.connect(set_visible_items)
     set_visible_items()
+
+func DEBUG_set_fps_limit(new_limit : String) -> void:
+    if(new_limit.is_valid_int()):
+        Engine.max_fps = new_limit.to_int()
 
 func try_exit() -> void:
     get_tree().quit()

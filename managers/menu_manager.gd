@@ -36,7 +36,7 @@ func Init() -> void:
     add_child(settings_menu)
     add_child(server_menu)
     main_menu.Init()
-    settings_menu.load_settings()
+    settings_menu.Init()
 
 func CloseAllMenus() -> void:
     _pause_menu_last_visible = true;

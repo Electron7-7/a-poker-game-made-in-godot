@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://blvtl6fyy5r6g"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://blvtl6fyy5r6g"]
 
-[ext_resource type="FontFile" uid="uid://dtsickda5aw1n" path="res://fonts/Audiowide-Regular.ttf" id="1_7454o"]
+[ext_resource type="FontFile" uid="uid://dtsickda5aw1n" path="res://resources/fonts/Audiowide-Regular.ttf" id="1_7454o"]
+[ext_resource type="FontFile" uid="uid://sw3uexq5fkks" path="res://resources/fonts/Verdana.ttf" id="2_6od3n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6d0am"]
 content_margin_left = 20.0
@@ -80,6 +81,21 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m7v8c"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.08800001, 0.10046667, 0.11, 0.98039216)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7454o"]
 bg_color = Color(0, 0.77, 0.385, 0.172549)
 corner_radius_top_left = 3
@@ -113,6 +129,9 @@ SliderDisplay/base_type = &"Label"
 SliderDisplay/colors/font_color = Color(0.28235295, 0.5803922, 0.35686275, 1)
 SliderDisplay/styles/focus = SubResource("StyleBoxEmpty_6od3n")
 SliderDisplay/styles/normal = SubResource("StyleBoxFlat_qhu7v")
+TooltipLabel/font_sizes/font_size = 16
+TooltipLabel/fonts/font = ExtResource("2_6od3n")
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_m7v8c")
 WorldSelectButton/base_type = &"Button"
 WorldSelectButton/styles/hover = SubResource("StyleBoxFlat_7454o")
 WorldSelectButton/styles/pressed = SubResource("StyleBoxFlat_6od3n")

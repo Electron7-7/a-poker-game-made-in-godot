@@ -10,13 +10,15 @@ const _settings_backup_files_name := "settings_backup_"
 const NAMES : Dictionary[String, String] = \
 {
     PlayerName = "PlayerName",
-    MouseSensitivity = "MouseSensitivity"
+    MouseSensitivity = "MouseSensitivity",
+    MouseSensitivityScale = "MouseSensitivityScale",
 }
 
 const DEFAULTS : Dictionary[String, Variant] = \
 {
     NAMES.PlayerName: "TheLegend27",
-    NAMES.MouseSensitivity: 0.01
+    NAMES.MouseSensitivity: 0.01,
+    NAMES.MouseSensitivityScale: 1.00,
 }
 
 const TEMP_Section : String = "PlayerSettings" # Temporarily only using one section
@@ -28,10 +30,12 @@ static var settings_backups_dir : DirAccess = null
 
 static var PlayerName : String = DEFAULTS.PlayerName
 static var MouseSensitivity : float = DEFAULTS.MouseSensitivity
+static var MouseSensitivityScale : float = DEFAULTS.MouseSensitivityScale
 
 func UpdateSettings(Settings : Dictionary[String, Variant]) -> void:
     PlayerName = Settings.get(NAMES.PlayerName)
     MouseSensitivity = Settings.get(NAMES.MouseSensitivity)
+    MouseSensitivityScale = Settings.get(NAMES.MouseSensitivityScale)
 
 func SaveSettings(Settings : Dictionary[String, Variant]) -> void:
     UpdateSettings(Settings)

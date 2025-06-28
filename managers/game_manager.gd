@@ -1,12 +1,19 @@
 class_name GameManager extends Node3D
 
 const MainWorld : PackedScene = preload("res://main/world.tscn")
-const Player : PackedScene = preload("res://things/actors/godot_player.tscn")
+const Player : PackedScene = preload("res://things/godot_player/godot_player.tscn")
+
+static var world : World = null
 
 var _stop_requested  : bool = false
 var _process_stopped : bool = true
 var _physics_process_stopped : bool = true
-var world : World = null
+
+func GetCurrentPlayer() -> GodotPlayer:
+    var try_player : GodotPlayer = get_tree().get_nodes_in_group(GodotPlayer.PlayerGroup).get(0)
+    if(try_player == null):
+        try_player = GodotPlayer.new()
+    return try_player
 
 func IsGameRunning() -> bool:
     return (!_process_stopped || !_physics_process_stopped)

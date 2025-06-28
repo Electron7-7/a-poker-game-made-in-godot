@@ -11,13 +11,20 @@ signal close
 @onready var _player_name : LineEdit = $"%PlayerName"
 @onready var _mouse_sensitivity_display : Label = $"%MouseSensitivityDisplay"
 @onready var _mouse_sensitivity_slider : HSlider = $"%MouseSensitivitySlider"
+@onready var _mouse_sensitivity_multiplier : LineEdit = $"%SensitivityMultiplier"
 
 func get_settings() -> Dictionary[String, Variant]:
     return \
     {
         SettingsManager.NAMES.PlayerName: _player_name.text,
         SettingsManager.NAMES.MouseSensitivity: _mouse_sensitivity_slider.value,
+        SettingsManager.NAMES.MouseSensitivityScale: _valid_sensitivity_multiplier(),
     }
+
+func _valid_sensitivity_multiplier() -> float:
+    if(_mouse_sensitivity_multiplier.text.is_valid_float()):
+        return _mouse_sensitivity_multiplier.text.to_float()
+    return SettingsManager.DEFAULTS.MouseSensitivityScale
 
 func _confirm_clear_settings() -> void:
     _confirm_clear.visible = true
@@ -46,25 +53,29 @@ func load_settings() -> void:
     # Get all settings here
     _player_name.text = loaded_settings.get(SettingsManager.NAMES.PlayerName)
     _mouse_sensitivity_slider.value = loaded_settings.get(SettingsManager.NAMES.MouseSensitivity)
+    _mouse_sensitivity_multiplier.text = String("%.2f" % loaded_settings.get(SettingsManager.NAMES.MouseSensitivityScale))
 
-func _unsaved_changes(_unused) -> void:
+func _unsaved_changes(_unused = null) -> void:
     _save_button.disabled = false
 
 func _mouse_sensitivity_changed(new_value : float) -> void:
-    _unsaved_changes(null)
+    _unsaved_changes()
     _mouse_sensitivity_display.text = String("%.2f" % new_value)
 
 func _ready() -> void:
+    # Settings signals
+    # connect all settings' relevant "-changed-" signals to functions
+    _player_name.text_changed.connect(_unsaved_changes)
+    _mouse_sensitivity_slider.value_changed.connect(_mouse_sensitivity_changed)
+    _mouse_sensitivity_multiplier.text_changed.connect(_unsaved_changes)
+
+    # other signal connections that aren't from settings
     _back_button.pressed.connect(_go_back)
     _save_button.pressed.connect(save_settings)
     _clear_settings.pressed.connect(_confirm_clear_settings)
     _clear_backups.pressed.connect(_clear_backup_saves)
     _clear_backups.disabled = !global_SettingsManager.HasBackups()
     _confirm_clear.confirmed.connect(clear_settings)
-
-    # connect all settings' relevant "-changed-" signals to functions
-    _player_name.text_changed.connect(_unsaved_changes)
-    _mouse_sensitivity_slider.value_changed.connect(_mouse_sensitivity_changed)
 
 func _go_back() -> void:
     close.emit()

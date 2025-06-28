@@ -64,15 +64,19 @@ metadata/_edit_group_ = true
 layout_mode = 2
 text = "Mouse Sensitivity"
 
-[node name="MouseSensitivityDisplay" type="Label" parent="Panel/FooterSeparator/Settings/SettingsList/Setting2"]
+[node name="MouseSensitivityDisplay" type="LineEdit" parent="Panel/FooterSeparator/Settings/SettingsList/Setting2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 theme_type_variation = &"SliderDisplay"
 text = "0.01"
-horizontal_alignment = 1
-vertical_alignment = 1
-clip_text = true
+placeholder_text = "0.01"
+alignment = 1
+max_length = 4
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+select_all_on_focus = true
 
 [node name="MouseSensitivitySlider" type="HSlider" parent="Panel/FooterSeparator/Settings/SettingsList/Setting2"]
 unique_name_in_owner = true
@@ -125,22 +129,26 @@ metadata/_edit_group_ = true
 layout_mode = 2
 text = "Field of View"
 
-[node name="FOVDisplay" type="Label" parent="Panel/FooterSeparator/Settings/SettingsList/Setting3"]
+[node name="FOVDisplay" type="LineEdit" parent="Panel/FooterSeparator/Settings/SettingsList/Setting3"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 theme_type_variation = &"SliderDisplay"
 text = "85"
-horizontal_alignment = 1
-vertical_alignment = 1
-clip_text = true
+placeholder_text = "85"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+select_all_on_focus = true
 
 [node name="FOV" type="HSlider" parent="Panel/FooterSeparator/Settings/SettingsList/Setting3"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 1
-max_value = 170.0
+max_value = 180.0
 value = 85.0
 
 [node name="Footer" type="HBoxContainer" parent="Panel/FooterSeparator"]
@@ -151,6 +159,12 @@ unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "Save Settings"
+
+[node name="Undo" type="Button" parent="Panel/FooterSeparator/Footer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Undo Changes"
 
 [node name="Back" type="Button" parent="Panel/FooterSeparator/Footer"]
 unique_name_in_owner = true

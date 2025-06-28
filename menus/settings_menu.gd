@@ -6,13 +6,14 @@ signal close
 @onready var _clear_notify  : AcceptDialog       = $"%ClearNotify"
 @onready var _back_button : Button = $"%Back"
 @onready var _save_button : Button = $"%Save"
+@onready var _undo_button : Button = $"%Undo"
 @onready var _clear_settings : Button = $"%ClearSettings"
 @onready var _clear_backups  : Button = $"%ClearBackups"
 @onready var _player_name : LineEdit = $"%PlayerName"
-@onready var _mouse_sensitivity_display : Label = $"%MouseSensitivityDisplay"
+@onready var _mouse_sensitivity_display : LineEdit = $"%MouseSensitivityDisplay"
 @onready var _mouse_sensitivity_slider : HSlider = $"%MouseSensitivitySlider"
 @onready var _mouse_sensitivity_multiplier : LineEdit = $"%SensitivityMultiplier"
-@onready var _fov_display : Label = $"%FOVDisplay"
+@onready var _fov_display : LineEdit = $"%FOVDisplay"
 @onready var _fov_slider : HSlider = $"%FOV"
 
 func get_settings() -> Dictionary[String, Variant]:
@@ -50,6 +51,12 @@ func save_settings() -> void:
     _clear_backups.disabled = !global_SettingsManager.HasBackups()
     _clear_settings.disabled = false
     _save_button.disabled = true
+    _undo_button.disabled = true
+
+func undo_changes() -> void:
+    load_settings()
+    _save_button.disabled = true
+    _undo_button.disabled = true
 
 func load_settings() -> void:
     var loaded_settings : Dictionary[String, Variant] = global_SettingsManager.LoadSettings()
@@ -61,14 +68,29 @@ func load_settings() -> void:
 
 func _unsaved_changes(_unused = null) -> void:
     _save_button.disabled = false
+    _undo_button.disabled = false
 
 func _mouse_sensitivity_changed(new_value : float) -> void:
     _unsaved_changes()
     _mouse_sensitivity_display.text = String("%.2f" % new_value)
 
-func _fov_changed(new_value : float) -> void:
+func _mouse_sensitivity_display_changed(new_value : String) -> void:
+    if(!new_value.is_valid_float()):
+        _mouse_sensitivity_display.text = String("%.2f" % _mouse_sensitivity_slider.value)
+        return
+    _mouse_sensitivity_slider.value = new_value.to_float()
     _unsaved_changes()
-    _fov_display.text = String("%3d" % new_value)
+
+func _fov_changed(new_value : int) -> void:
+    _unsaved_changes()
+    _fov_display.text = String("%d" % new_value)
+
+func _fov_display_changed(new_value : String) -> void:
+    if(!new_value.is_valid_float()):
+        _fov_display.text = String("%d" % _fov_slider.value)
+        return
+    _fov_slider.value = new_value.to_float()
+    _unsaved_changes()
 
 func _input(event: InputEvent) -> void:
     if(event.is_action("ui_cancel") && visible):
@@ -77,22 +99,28 @@ func _input(event: InputEvent) -> void:
 func Init() -> void:
     load_settings()
     _save_button.disabled = true
+    _undo_button.disabled = true
 
 func _ready() -> void:
     # Settings signals
     # connect all settings' relevant "-changed-" signals to functions
     _player_name.text_changed.connect(_unsaved_changes)
     _mouse_sensitivity_slider.value_changed.connect(_mouse_sensitivity_changed)
+    _mouse_sensitivity_display.text_submitted.connect(_mouse_sensitivity_display_changed)
     _mouse_sensitivity_multiplier.text_changed.connect(_unsaved_changes)
     _fov_slider.value_changed.connect(_fov_changed)
+    _fov_display.text_submitted.connect(_fov_display_changed)
 
     # other signal connections that aren't from settings
     _back_button.pressed.connect(_go_back)
     _save_button.pressed.connect(save_settings)
+    _undo_button.pressed.connect(undo_changes)
     _clear_settings.pressed.connect(_confirm_clear_settings)
     _clear_backups.pressed.connect(_clear_backup_saves)
     _clear_backups.disabled = !global_SettingsManager.HasBackups()
     _confirm_clear.confirmed.connect(clear_settings)
 
 func _go_back() -> void:
+    if(!_save_button.disabled):
+        undo_changes()
     close.emit()

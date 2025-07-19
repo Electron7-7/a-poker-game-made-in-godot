@@ -1,0 +1,183 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxnt4m1x7ocog"]
+
+[ext_resource type="Script" uid="uid://d0c7n1bwxv5sn" path="res://menus/main_menu.gd" id="1_ij7vn"]
+[ext_resource type="Theme" uid="uid://blvtl6fyy5r6g" path="res://menus/default_theme.tres" id="2_ij7vn"]
+
+[sub_resource type="Theme" id="Theme_ij7vn"]
+Label/font_sizes/font_size = 16
+LineEdit/font_sizes/font_size = 16
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ij7vn")
+script = ExtResource("1_ij7vn")
+metadata/_edit_lock_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+metadata/_edit_lock_ = true
+
+[node name="MainMenu" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="GameButtons" type="HBoxContainer" parent="CenterContainer/MainMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="New" type="Button" parent="CenterContainer/MainMenu/GameButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "New Game"
+
+[node name="Continue" type="Button" parent="CenterContainer/MainMenu/GameButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+toggle_mode = true
+text = "Continue"
+
+[node name="Settings" type="Button" parent="CenterContainer/MainMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings"
+
+[node name="Exit" type="Button" parent="CenterContainer/MainMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit"
+
+[node name="PauseMenu" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="Resume" type="Button" parent="CenterContainer/PauseMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back to Game"
+
+[node name="PauseSettings" type="Button" parent="CenterContainer/PauseMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings"
+
+[node name="HostingButtons" type="HBoxContainer" parent="CenterContainer/PauseMenu"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 2
+
+[node name="OpenToLan" type="Button" parent="CenterContainer/PauseMenu/HostingButtons"]
+layout_mode = 2
+text = "Open to LAN"
+
+[node name="HostP2P" type="Button" parent="CenterContainer/PauseMenu/HostingButtons"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Host P2P"
+
+[node name="HostViaSteam" type="Button" parent="CenterContainer/PauseMenu/HostingButtons"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Host via Steam"
+
+[node name="Quit" type="Button" parent="CenterContainer/PauseMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Save Last Hand and Quit to Menu"
+
+[node name="Saves" type="ScrollContainer" parent="." groups=["StartHidden"]]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 784.0
+offset_top = 256.0
+offset_right = 1120.0
+offset_bottom = 624.0
+theme_type_variation = &"SavesScroll"
+metadata/_edit_group_ = true
+
+[node name="SaveGames" type="VBoxContainer" parent="Saves"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="_SaveTemplate" type="Button" parent="." groups=["StartHidden"]]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 814.0
+offset_top = 272.0
+offset_right = 1137.0
+offset_bottom = 280.0
+size_flags_horizontal = 3
+theme = ExtResource("2_ij7vn")
+theme_type_variation = &"WorldSelectButton"
+text = "test"
+metadata/_edit_lock_ = true
+
+[node name="ConfirmQuit" type="ConfirmationDialog" parent="." groups=["StartHidden"]]
+unique_name_in_owner = true
+oversampling_override = 1.0
+title = "Quit Confirmation"
+initial_position = 1
+size = Vector2i(481, 256)
+unresizable = true
+borderless = true
+popup_wm_hint = true
+ok_button_text = "Yes"
+dialog_text = "Are you sure you want to quit?
+If you quit now, only the last hand will be saved (and RNG is non-deterministic, so you can't save-scum)."
+dialog_autowrap = true
+cancel_button_text = "No"
+
+[node name="DebugMenu" type="FoldableContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 139.0
+offset_right = 366.0
+offset_bottom = 579.0
+theme = SubResource("Theme_ij7vn")
+folded = true
+title = "DEBUG MENU"
+title_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugMenu"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DebugMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Framerate Cap"
+
+[node name="FPS" type="LineEdit" parent="DebugMenu/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "0 (unlimited)"
+max_length = 3
+expand_to_text_length = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+select_all_on_focus = true

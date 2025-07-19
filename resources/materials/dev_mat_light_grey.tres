@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://kuj3bw5bet02"]
+
+[ext_resource type="Texture2D" uid="uid://wse7sbevb5y2" path="res://resources/images/altdev_generic03.png" id="1_nw8t8"]
+
+[resource]
+albedo_texture = ExtResource("1_nw8t8")
+albedo_texture_force_srgb = true
+metallic = 1.0
+roughness = 0.63
+clearcoat_enabled = true
+clearcoat_roughness = 0.4
+uv1_triplanar = true
+texture_filter = 4

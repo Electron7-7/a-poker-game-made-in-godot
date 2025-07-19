@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bcsl5k5ovpnnn"]
+
+[ext_resource type="Texture2D" uid="uid://qoxn4in7fwgt" path="res://resources/images/test_frutiger_button.png" id="1_3e7tc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_55l3f"]
+texture = ExtResource("1_3e7tc")
+region_rect = Rect2(0, 0, 1024, 1024)
+
+[resource]
+Button/styles/normal = SubResource("StyleBoxTexture_55l3f")

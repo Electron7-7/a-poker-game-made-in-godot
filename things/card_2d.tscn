@@ -1,0 +1,129 @@
+[gd_scene load_steps=9 format=3 uid="uid://babe7xqxnt0y6"]
+
+[ext_resource type="Script" uid="uid://bir5gv4wre8mc" path="res://things/card_2d.gd" id="1_ja0w2"]
+[ext_resource type="Texture2D" uid="uid://j8qyn5ox586c" path="res://resources/sprites/CardRankAtlas.png" id="2_i2pe6"]
+[ext_resource type="Texture2D" uid="uid://8m1pwhrmjmy" path="res://resources/sprites/CardSuitAtlas.png" id="3_13h5m"]
+[ext_resource type="Texture2D" uid="uid://ulq1ihr81cvm" path="res://resources/sprites/KingQueenKnave.png" id="4_ffwp4"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ja0w2"]
+size = Vector2(100, 135)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13h5m"]
+atlas = ExtResource("2_i2pe6")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffwp4"]
+atlas = ExtResource("3_13h5m")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8rxr"]
+atlas = ExtResource("4_ffwp4")
+
+[node name="Card2D" type="Node2D"]
+script = ExtResource("1_ja0w2")
+metadata/_custom_type_script = "uid://bir5gv4wre8mc"
+
+[node name="Card" type="MeshInstance2D" parent="."]
+mesh = SubResource("QuadMesh_ja0w2")
+
+[node name="CornerSprites" type="Node2D" parent="."]
+
+[node name="BottomLeft" type="Sprite2D" parent="CornerSprites"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+texture_filter = 3
+position = Vector2(-37, 55)
+scale = Vector2(0.25, 0.25)
+texture = SubResource("AtlasTexture_13h5m")
+region_enabled = true
+region_rect = Rect2(0, 0, 100, 100)
+
+[node name="BottomRight" type="Sprite2D" parent="CornerSprites"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+texture_filter = 3
+position = Vector2(37, 55)
+scale = Vector2(0.25, 0.25)
+texture = SubResource("AtlasTexture_13h5m")
+region_enabled = true
+region_rect = Rect2(0, 0, 100, 100)
+
+[node name="TopLeft" type="Sprite2D" parent="CornerSprites"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+texture_filter = 3
+position = Vector2(-37, -55)
+scale = Vector2(0.25, 0.25)
+texture = SubResource("AtlasTexture_13h5m")
+region_enabled = true
+region_rect = Rect2(0, 0, 100, 100)
+
+[node name="TopRight" type="Sprite2D" parent="CornerSprites"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+texture_filter = 3
+position = Vector2(37, -55)
+scale = Vector2(0.25, 0.25)
+texture = SubResource("AtlasTexture_13h5m")
+region_enabled = true
+region_rect = Rect2(0, 0, 100, 100)
+
+[node name="SuitSprites" type="Node2D" parent="."]
+
+[node name="SuitSprite" type="Sprite2D" parent="SuitSprites"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+texture_filter = 3
+texture = SubResource("AtlasTexture_ffwp4")
+region_enabled = true
+region_rect = Rect2(0, 0, 100, 100)
+
+[node name="KingQueenKnave" type="Sprite2D" parent="SuitSprites"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 3
+texture = SubResource("AtlasTexture_r8rxr")
+region_enabled = true
+region_rect = Rect2(0, 0, 100, 100)
+
+[node name="SpriteMarkers" type="Node2D" parent="SuitSprites"]
+unique_name_in_owner = true
+metadata/_edit_group_ = true
+
+[node name="1" type="Marker2D" parent="SuitSprites/SpriteMarkers"]
+position = Vector2(-13, -14)
+rotation = -0.05235988
+
+[node name="2" type="Marker2D" parent="SuitSprites/SpriteMarkers"]
+position = Vector2(11, -2)
+rotation = 0.09599311
+
+[node name="3" type="Marker2D" parent="SuitSprites/SpriteMarkers"]
+position = Vector2(-3, 17)
+rotation = -0.06981317
+
+[node name="4" type="Marker2D" parent="SuitSprites/SpriteMarkers"]
+position = Vector2(28, 19)
+rotation = 0.20943952
+
+[node name="5" type="Marker2D" parent="SuitSprites/SpriteMarkers"]
+position = Vector2(-24, 8)
+rotation = 0.28797933
+
+[node name="6" type="Marker2D" parent="SuitSprites/SpriteMarkers"]
+position = Vector2(-16, 37)
+rotation = -0.07853982
+
+[node name="7" type="Marker2D" parent="SuitSprites/SpriteMarkers"]
+position = Vector2(9, -29)
+rotation = -0.2617994
+
+[node name="8" type="Marker2D" parent="SuitSprites/SpriteMarkers"]
+position = Vector2(12, 42)
+rotation = 0.12217305
+
+[node name="9" type="Marker2D" parent="SuitSprites/SpriteMarkers"]
+position = Vector2(-19, -37)
+rotation = 0.16580628
+
+[node name="10" type="Marker2D" parent="SuitSprites/SpriteMarkers"]
+position = Vector2(32, -13)
+rotation = -0.12217305

@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxnt4m1x7ocog"]
+[gd_scene load_steps=4 format=3 uid="uid://dxnt4m1x7ocog"]
 
 [ext_resource type="Script" uid="uid://d0c7n1bwxv5sn" path="res://menus/main_menu.gd" id="1_ij7vn"]
 [ext_resource type="Theme" uid="uid://blvtl6fyy5r6g" path="res://menus/default_theme.tres" id="2_ij7vn"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ij7vn"]
 
 [sub_resource type="Theme" id="Theme_ij7vn"]
 Label/font_sizes/font_size = 16
@@ -79,6 +77,7 @@ text = "Settings"
 
 [node name="HostingButtons" type="HBoxContainer" parent="CenterContainer/PauseMenu"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 alignment = 2
@@ -100,7 +99,7 @@ text = "Host via Steam"
 [node name="Quit" type="Button" parent="CenterContainer/PauseMenu"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Quit to Menu"
+text = "Save Last Hand and Quit to Menu"
 
 [node name="Saves" type="ScrollContainer" parent="." groups=["StartHidden"]]
 unique_name_in_owner = true
@@ -119,7 +118,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="_WorldTemplate" type="Button" parent="." groups=["StartHidden"]]
+[node name="_SaveTemplate" type="Button" parent="." groups=["StartHidden"]]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
@@ -138,70 +137,15 @@ unique_name_in_owner = true
 oversampling_override = 1.0
 title = "Quit Confirmation"
 initial_position = 1
-size = Vector2i(296, 305)
+size = Vector2i(481, 256)
 unresizable = true
 borderless = true
 popup_wm_hint = true
 ok_button_text = "Yes"
 dialog_text = "Are you sure you want to quit?
--------------------
-All unsaved progress will be lost!"
+If you quit now, only the last hand will be saved (and RNG is non-deterministic, so you can't save-scum)."
 dialog_autowrap = true
 cancel_button_text = "No"
-
-[node name="NewGameMenu" type="PanelContainer" parent="." groups=["StartHidden"]]
-unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 354.0
-offset_top = 171.0
-offset_right = 804.0
-offset_bottom = 521.0
-metadata/_edit_group_ = true
-
-[node name="PanelContainer" type="VSplitContainer" parent="NewGameMenu"]
-layout_mode = 2
-split_offset = 300
-dragging_enabled = false
-dragger_visibility = 1
-metadata/_edit_lock_ = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="NewGameMenu/PanelContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="NewGameMenu/PanelContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="NewGameMenu/PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "World Name:"
-
-[node name="WorldName" type="LineEdit" parent="NewGameMenu/PanelContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-placeholder_text = "BuildySuildy"
-expand_to_text_length = true
-select_all_on_focus = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="NewGameMenu/PanelContainer"]
-clip_contents = true
-layout_mode = 2
-
-[node name="StartNewGame" type="Button" parent="NewGameMenu/PanelContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-disabled = true
-text = "Start Game"
-
-[node name="VSeparator" type="VSeparator" parent="NewGameMenu/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/separator = SubResource("StyleBoxEmpty_ij7vn")
-
-[node name="CancelNewGame" type="Button" parent="NewGameMenu/PanelContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Cancel"
 
 [node name="DebugMenu" type="FoldableContainer" parent="."]
 layout_mode = 0

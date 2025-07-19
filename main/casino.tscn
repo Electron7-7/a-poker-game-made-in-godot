@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://disimm03y0k03"]
+
+[ext_resource type="Script" uid="uid://crtcntar8hbpb" path="res://main/casino.gd" id="1_ch0rr"]
+
+[node name="Casino" type="Node2D"]
+script = ExtResource("1_ch0rr")
+
+[node name="shittydebugdelaytimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true

@@ -1,4 +1,4 @@
-class_name MenuManager extends Control
+class_name MenuManager extends CanvasLayer
 
 static var main_menu : Control = preload("res://menus/main_menu.tscn").instantiate()
 static var settings_menu : Control = preload("res://menus/settings_menu.tscn").instantiate()
@@ -13,7 +13,7 @@ static func SetMouseMode() -> void:
     if(IsPauseMenuActive()):
         Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
     else:
-        Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+        Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func TogglePauseMenu() -> void:
     if(main_menu.visible == _pause_menu_last_visible):
@@ -29,6 +29,7 @@ func DeactivateMenu(menu : Control) -> void:
     menu.visible = false
 
 func Init() -> void:
+    layer = 1
     main_menu.visible = true
     settings_menu.visible = false
     server_menu.visible = false

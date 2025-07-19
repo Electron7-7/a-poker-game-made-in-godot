@@ -5,4 +5,9 @@
 [resource]
 albedo_texture = ExtResource("1_nw8t8")
 albedo_texture_force_srgb = true
+metallic = 1.0
+roughness = 0.63
+clearcoat_enabled = true
+clearcoat_roughness = 0.4
 uv1_triplanar = true
+texture_filter = 4

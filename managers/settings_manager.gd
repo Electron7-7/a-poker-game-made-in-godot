@@ -40,7 +40,6 @@ func UpdateSettings(Settings : Dictionary[String, Variant]) -> void:
     MouseSensitivity = Settings.get(NAMES.MouseSensitivity)
     MouseSensitivityScale = Settings.get(NAMES.MouseSensitivityScale)
     FOV = Settings.get(NAMES.FOV)
-    global_GameManager.GetCurrentPlayer().set_fov(FOV)
 
 func SaveSettings(Settings : Dictionary[String, Variant]) -> void:
     UpdateSettings(Settings)

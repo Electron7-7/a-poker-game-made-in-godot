@@ -1,7 +1,23 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cro58we6chbfr"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cro58we6chbfr"]
 
 [ext_resource type="Texture2D" uid="uid://2amh34emlica" path="res://resources/images/altdev_generic07.png" id="1_c4qtt"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c4qtt"]
+render_priority = -1
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(1, 0.75, 1, 1)
+stencil_mode = 3
+stencil_flags = 3
+stencil_compare = 5
+metadata/_stencil_owned = true
+
 [resource]
+next_pass = SubResource("StandardMaterial3D_c4qtt")
 albedo_texture = ExtResource("1_c4qtt")
 uv1_triplanar = true
+texture_filter = 4
+stencil_mode = 2
+stencil_flags = 2
+stencil_color = Color(1, 0.75, 1, 1)

@@ -23,6 +23,6 @@ func _init() -> void:
     Engine.physics_ticks_per_second = Common._TICK_RATE
 
 func _ready() -> void:
-    global_WorldManager.Init()
+    global_CasinoManager.Init()
     global_SettingsManager.Init()
     global_MenuManager.Init()
